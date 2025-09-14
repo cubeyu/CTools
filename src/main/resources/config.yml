@@ -1,0 +1,71 @@
+# CTools 插件配置文件
+
+# 功能模块开关
+modules:
+  welcome: true          # 进服提示模块
+  leave: true            # 退服提示模块
+  rules: true            # 规则帮助模块
+  commandblock: true     # 命令禁用模块
+
+# 进服提示设置
+welcome:
+  delay: 10  # tick
+  messages:
+  - '&7[&a+&7] &7%player_name%'
+  # 提示音设置
+  sound:
+    enabled: true  # 是否启用提示音
+    type: "ENTITY_PLAYER_LEVELUP"  # 声音类型（使用Minecraft的Sound枚举值）
+
+# 退服提示设置
+leave:
+  delay: 10  # tick
+  messages:
+  - '&7[&c-&7] &7%player_name%'
+  # 提示音设置
+  sound:
+    enabled: true  # 是否启用提示音
+    type: "ENTITY_ITEM_BREAK"  # 声音类型（使用Minecraft的Sound枚举值）
+
+# 规则内容配置
+rules:
+  title: "&6=== 萌新指南 ==="
+  content:
+  - ' &6&e/cd &7- &f打开主菜单'
+  - ' &6&e/qs &7- &f箱子商店帮助'
+  - ' &6&e/spawn &7- &f回到主城'
+  - ' &6&e/cm on/off&7- &f连锁挖矿开关'
+  - ' &6&e/baltop 查看金币排行榜'
+  - ' &6&e/qs price 价格&7- &f修改商店价格'
+  - ' &6&e/sethome [家的名称] &7- &f设置一个家传送点'
+  - ' &6&e/home [家的名称] &7- &f传送到指定的家'
+  - ' &6&e/homes &7- &f打开家菜单'
+  - ' &6&e/delhome [家的名称] &7- &f删除指定的家传送点'
+  - ' &6&e/tpa [玩家名] &7- &f请求传送到其他玩家'
+  - ' &6&e/tpaccept &7- &f同意传送请求'
+  - ' &6&e/tpdeny &7- &f拒绝传送请求'
+  - ' &6&e/msg [玩家名] [内容] &7- &f给其他玩家发送私聊信息'
+  - ' &6&e/money &7- &f查看您的金币余额'
+  - ' &6&e/pay [玩家名] [金额] &7- &f向玩家支付生存币'
+  - ' &6&e/dom create [领地名字] &7-&f 创建领地'
+  - ' &6&e/dom tp [领地名字] &7- &f回到领地'
+  - ' &6&e/kiss <ID> &7- &f亲吻玩家'
+  - ' &6&e/ah &7- &f拍卖行'
+  - ' &6&e/ah sell 起拍价 一口价 <货币类型: 1=金币, 2=点券> &7- &f上架物品到拍卖行'
+  lines-per-page: 27
+
+# 命令禁用设置
+commandblock:
+  mode: "blacklist"  # blacklist 或 whitelist
+  blocked-commands:
+    - "op"
+    - "deop"
+    - "stop"
+    - "reload"
+    - "kick"
+    - "ban"
+    - "unban"
+    - "plugins"
+    - "version"
+    - "pl"
+  block-message: "&c你没有权限使用此命令！"
