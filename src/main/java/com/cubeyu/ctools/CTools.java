@@ -95,10 +95,11 @@ public class CTools extends JavaPlugin implements CommandExecutor, TabCompleter 
         
         if (args.length == 0 || args[0].equalsIgnoreCase("help")) {
             sender.sendMessage(ColorUtils.colorize("&6=== CTools 命令帮助 ==="));
+            sender.sendMessage(ColorUtils.colorize("&e/rules &7- 查看萌新指南"));
             sender.sendMessage(ColorUtils.colorize("&e/ctools help &7- 查看插件帮助"));
             sender.sendMessage(ColorUtils.colorize("&e/ctools reload &7- 重载插件配置"));
-            sender.sendMessage(ColorUtils.colorize("&e/rules &7- 查看萌新指南"));
-            sender.sendMessage(ColorUtils.colorize("&e/blockcmd <add|remove|list> [命令:不要带/] &7- 管理被禁用的命令"));
+            sender.sendMessage(ColorUtils.colorize("&e/blockcmd <add&f&l|&eremove&f&l|&elist> [命令:不要带/] &7- 管理命令"));
+            sender.sendMessage(ColorUtils.colorize("&a作者QQ：3144855127"));
             return true;
         }
 
