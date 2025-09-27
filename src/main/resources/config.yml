@@ -2,8 +2,7 @@
 # ctools.rules.view查看萌新指南[默认开启]
 # ctools.commandblock.bypass绕过命令禁用[默认OP]
 # ctools.blockcmd管理被禁用的命令[默认OP]
-# ctools.admin插件帮助信息[默认OP]
-# ctools.reload重载插件配置[默认OP]
+# ctools.admin插件帮助信息和重载插件配置[默认OP]
 
 # 功能模块开关
 modules:

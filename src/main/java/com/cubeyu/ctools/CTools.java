@@ -45,24 +45,16 @@ public class CTools extends JavaPlugin implements CommandExecutor, TabCompleter 
         getCommand("ctools").setExecutor(this);
         getCommand("ctools").setTabCompleter(this);
 
-        // 注册重载命令
-        getCommand("ctools").setExecutor((sender, command, label, args) -> {
-            if (!sender.hasPermission("ctools.reload")) {
-                sender.sendMessage("§c你没有权限使用此命令！");
-                return true;
-            }
-            
-            if (args.length > 0 && args[0].equalsIgnoreCase("reload")) {
-                reloadPlugin();
-                sender.sendMessage("§a插件重载成功！");
-                return true;
-            }
-            
-            sender.sendMessage("§c用法: /ctools reload");
-            return true;
-        });
-
-        logger.info("CTools 插件已成功启用！作者QQ：3144855127");
+        // 炫酷的插件启用日志
+        logger.info("------------------------------------------");
+        logger.info("          ╔═╗╔╦╗╔═╗╦  ╦╔═╗╔═╗              ");
+        logger.info("          ║ ║ ║ ║  ║  ║║╣ ╠╣               ");
+        logger.info("          ╚═╝ ╩ ╚═╝╩═╝╩╚═╝╚                ");
+        logger.info("                                           ");
+        logger.info("        CTools 插件已成功启用！             ");
+        logger.info("        版本: " + getDescription().getVersion());
+        logger.info("        作者QQ：3144855127                  ");
+        logger.info("------------------------------------------");
     }
 
     @Override
@@ -95,25 +87,22 @@ public class CTools extends JavaPlugin implements CommandExecutor, TabCompleter 
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (args.length == 0) {
-            // 查看帮助信息需要admin权限
-            if (!sender.hasPermission("ctools.admin")) {
-                sender.sendMessage(ColorUtils.colorize("&c你没有权限使用此命令！"));
-                return true;
-            }
-            
-            sender.sendMessage(ColorUtils.colorize("&6=== CTools 插件 ==="));
+        // 统一使用admin权限检查
+        if (!sender.hasPermission("ctools.admin")) {
+            sender.sendMessage(ColorUtils.colorize("&c你没有权限使用此命令！"));
+            return true;
+        }
+        
+        if (args.length == 0 || args[0].equalsIgnoreCase("help")) {
+            sender.sendMessage(ColorUtils.colorize("&6=== CTools 命令帮助 ==="));
+            sender.sendMessage(ColorUtils.colorize("&e/ctools help &7- 查看插件帮助"));
             sender.sendMessage(ColorUtils.colorize("&e/ctools reload &7- 重载插件配置"));
+            sender.sendMessage(ColorUtils.colorize("&e/rules &7- 查看萌新指南"));
+            sender.sendMessage(ColorUtils.colorize("&e/blockcmd <add|remove|list> [命令:不要带/] &7- 管理被禁用的命令"));
             return true;
         }
 
         if (args[0].equalsIgnoreCase("reload")) {
-            // 重载配置只需要reload权限
-            if (!sender.hasPermission("ctools.reload")) {
-                sender.sendMessage(ColorUtils.colorize("&c你没有权限使用此命令！"));
-                return true;
-            }
-            
             // 调用reloadPlugin方法处理重载
             reloadPlugin();
 
@@ -128,6 +117,7 @@ public class CTools extends JavaPlugin implements CommandExecutor, TabCompleter 
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> completions = new ArrayList<>();
         if (args.length == 1 && sender.hasPermission("ctools.admin")) {
+            completions.add("help");
             completions.add("reload");
         }
         return completions;

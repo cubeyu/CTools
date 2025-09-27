@@ -14,9 +14,9 @@ commands:
     usage: /blockcmd <add|remove|list> [命令]
     permission: ctools.blockcmd
   ctools:
-    description: 允许重载插件配置
-    usage: /ctools reload
-    permission: ctools.reload
+    description: 显示插件帮助信息或重载插件配置
+    usage: /ctools [help|reload]
+    permission: ctools.admin
 permissions:
   ctools.rules.view:
     description: 允许查看萌新指南
@@ -28,8 +28,5 @@ permissions:
     description: 允许管理被禁用的命令
     default: op
   ctools.admin:
-    description: 允许使用CTools管理员命令
-    default: op
-  ctools.reload:
-    description: 允许重载插件配置
+    description: 允许查看插件帮助命令和重载插件配置
     default: op
