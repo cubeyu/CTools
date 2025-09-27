@@ -3,6 +3,7 @@ package com.cubeyu.ctools.modules;
 import com.cubeyu.ctools.CTools;
 import com.cubeyu.ctools.utils.ColorUtils;
 import com.cubeyu.ctools.utils.GuiUtils;
+import com.cubeyu.ctools.utils.PlaceholderUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -125,9 +126,11 @@ public class RulesManager implements Listener, CommandExecutor, TabCompleter {
         
         for (int i = startIndex; i < endIndex; i++) {
             String rule = content.get(i);
+            // 解析规则文本中的变量
+            String parsedRule = PlaceholderUtils.parsePlaceholders(player, rule);
             ItemStack item = GuiUtils.createButton(
                 Material.PAPER,
-                rule,
+                parsedRule,
                 "&7规则 #" + (i + 1)
             );
             gui.addItem(item);

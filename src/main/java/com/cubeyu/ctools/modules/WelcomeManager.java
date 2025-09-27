@@ -2,6 +2,7 @@ package com.cubeyu.ctools.modules;
 
 import com.cubeyu.ctools.CTools;
 import com.cubeyu.ctools.utils.ColorUtils;
+import com.cubeyu.ctools.utils.PlaceholderUtils;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
@@ -78,10 +79,13 @@ public class WelcomeManager implements Listener {
         // 延迟发送自定义欢迎消息
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             for (String message : messages) {
-                // 替换占位符
+                // 替换基础占位符
                 String processedMessage = message
                     .replace("%player_name%", player.getName())
                     .replace("%server%", plugin.getServer().getName());
+                
+                // 使用PlaceholderAPI解析更复杂的变量
+                processedMessage = PlaceholderUtils.parsePlaceholders(player, processedMessage);
                 
                 // 发送带颜色的消息给所有在线玩家
                 Component component = ColorUtils.colorize(processedMessage);

@@ -6,6 +6,7 @@ import com.cubeyu.ctools.modules.CommandBlocker;
 import com.cubeyu.ctools.modules.LeaveManager;
 import com.cubeyu.ctools.utils.ColorUtils;
 import org.bukkit.command.Command;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -36,7 +37,9 @@ public class CTools extends JavaPlugin implements CommandExecutor, TabCompleter 
         saveDefaultConfig();
         config = getConfig();
 
-
+        // 检测PlaceholderAPI
+        boolean placeholderAPIEnabled = Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
+        logger.info(placeholderAPIEnabled ? "PlaceholderAPI 已检测到，可以使用变量替换功能" : "未检测到PlaceholderAPI，变量替换功能将不可用");
 
         // 初始化模块
         initializeModules();

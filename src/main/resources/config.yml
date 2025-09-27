@@ -3,7 +3,7 @@
 # ctools.commandblock.bypass绕过命令禁用[默认OP]
 # ctools.blockcmd管理被禁用的命令[默认OP]
 # ctools.admin插件帮助信息和重载插件配置[默认OP]
-
+# 插件支持papi变量
 # 功能模块开关
 modules:
   welcome: true          # 进服提示模块
@@ -15,7 +15,7 @@ modules:
 welcome:
   delay: 10  # tick
   messages:
-  - '&7[&a+&7] &7%player_name%'
+  - '&7[&a+&7] %luckperms_groups%&7%player_name%'
   # 提示音设置
   sound:
     enabled: true  # 是否启用提示音
@@ -25,7 +25,7 @@ welcome:
 leave:
   delay: 10  # tick
   messages:
-  - '&7[&c-&7] &7%player_name%'
+  - '&7[&c-&7] %luckperms_groups%&7%player_name%'
   # 提示音设置
   sound:
     enabled: true  # 是否启用提示音
