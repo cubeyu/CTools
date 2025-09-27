@@ -76,7 +76,7 @@ rules:
 # 命令禁用设置
 commandblock:
   mode: "blacklist"  # blacklist 或 whitelist
-  blocked-commands:
+  blocked-commands:  # 添加指令不要带/
     - "op"
     - "deop"
     - "stop"
@@ -87,17 +87,7 @@ commandblock:
     - "plugins"
     - "help"
     - "version"
-    - "//calc"
-    - "//calculate"
-    - "//eval"
-    - "//evaluate"
-    - "//solve"
-    - "//asc"
-    - "//ascend"
-    - "//desc"
-    - "//descend"
-    - "/mv ^"
-    - "/mv help <"
-    - "/mvhelp <"
-    - "/$"
+    - "mv "
+    - "mv help"
+    - "mvhelp"
   block-message: "&7[&e&l!&7]&c&l小伙子你想看什么！"
