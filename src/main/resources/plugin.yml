@@ -3,10 +3,10 @@ version: '${project.version}'
 main: com.cubeyu.ctools.CTools
 api-version: '1.20'
 authors: [cubeyu]
-description: 一个多功能的插件，提供了一系列面向服主实用的功能和管理工具
+description: 一个多功能的全版本插件，提供了一系列面向服主实用的功能和管理工具
 commands:
   rules:
-    description: 显示服务器规则
+    description: 显示萌新指南
     usage: /rules
     permission: ctools.rules.view
   blockcmd:
@@ -14,21 +14,18 @@ commands:
     usage: /blockcmd <add|remove|list> [命令]
     permission: ctools.blockcmd
   ctools:
-    description: CTools插件主命令
+    description: 允许重载插件配置
     usage: /ctools reload
-    permission: ctools.admin
+    permission: ctools.reload
 permissions:
   ctools.rules.view:
-    description: 允许查看服务器规则
+    description: 允许查看萌新指南
     default: true
   ctools.commandblock.bypass:
     description: 允许绕过命令禁用限制
     default: op
   ctools.blockcmd:
     description: 允许管理被禁用的命令
-    default: op
-  ctools.welcome.bypass:
-    description: 允许绕过进服提示
     default: op
   ctools.admin:
     description: 允许使用CTools管理员命令

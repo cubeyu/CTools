@@ -96,18 +96,25 @@ public class CTools extends JavaPlugin implements CommandExecutor, TabCompleter 
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!sender.hasPermission("ctools.admin")) {
-            sender.sendMessage(ColorUtils.colorize("&c你没有权限使用此命令！"));
-            return true;
-        }
-
         if (args.length == 0) {
+            // 查看帮助信息需要admin权限
+            if (!sender.hasPermission("ctools.admin")) {
+                sender.sendMessage(ColorUtils.colorize("&c你没有权限使用此命令！"));
+                return true;
+            }
+            
             sender.sendMessage(ColorUtils.colorize("&6=== CTools 插件 ==="));
             sender.sendMessage(ColorUtils.colorize("&e/ctools reload &7- 重载插件配置"));
             return true;
         }
 
         if (args[0].equalsIgnoreCase("reload")) {
+            // 重载配置只需要reload权限
+            if (!sender.hasPermission("ctools.reload")) {
+                sender.sendMessage(ColorUtils.colorize("&c你没有权限使用此命令！"));
+                return true;
+            }
+            
             // 调用reloadPlugin方法处理重载
             reloadPlugin();
 

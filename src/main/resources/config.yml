@@ -1,4 +1,9 @@
-# CTools 插件配置文件
+# 权限列表
+# ctools.rules.view查看萌新指南[默认开启]
+# ctools.commandblock.bypass绕过命令禁用[默认OP]
+# ctools.blockcmd管理被禁用的命令[默认OP]
+# ctools.admin插件帮助信息[默认OP]
+# ctools.reload重载插件配置[默认OP]
 
 # 功能模块开关
 modules:
@@ -31,12 +36,12 @@ leave:
 rules:
   title: "&6=== 萌新指南 ==="
   content:
-  - ' &6&e/cd &7- &f打开主菜单'
+  - ' &6&e/cd &7- &f打开菜单'
+  - ' &6&eShift + F键 = 打开菜单'
   - ' &6&e/qs &7- &f箱子商店帮助'
   - ' &6&e/spawn &7- &f回到主城'
-  - ' &6&e/cm on/off&7- &f连锁挖矿开关'
-  - ' &6&e/baltop 查看金币排行榜'
-  - ' &6&e/qs price 价格&7- &f修改商店价格'
+  - ' &6&e/baltop &7- &f查看金币排行榜'
+  - ' &6&e/sellgui &7- &f出售背包物品'
   - ' &6&e/sethome [家的名称] &7- &f设置一个家传送点'
   - ' &6&e/home [家的名称] &7- &f传送到指定的家'
   - ' &6&e/homes &7- &f打开家菜单'
@@ -46,13 +51,27 @@ rules:
   - ' &6&e/tpdeny &7- &f拒绝传送请求'
   - ' &6&e/msg [玩家名] [内容] &7- &f给其他玩家发送私聊信息'
   - ' &6&e/money &7- &f查看您的金币余额'
-  - ' &6&e/pay [玩家名] [金额] &7- &f向玩家支付生存币'
+  - ' &6&e/pay [玩家名] [金额] &7- &f向玩家支付金币'
+  - ' &6&e/plr getHelpBook &7- &f种族之书'
+  - ' &6&e右键商店木牌 &7- &f修改商店'
+  - ' &6&e/envoy drops &7- &f藏宝箱坐标'
+  - ' &6&e/envoy time &7- &f藏宝箱时间'
   - ' &6&e/dom create [领地名字] &7-&f 创建领地'
   - ' &6&e/dom tp [领地名字] &7- &f回到领地'
-  - ' &6&e/kiss <ID> &7- &f亲吻玩家'
   - ' &6&e/ah &7- &f拍卖行'
-  - ' &6&e/ah sell 起拍价 一口价 <货币类型: 1=金币, 2=点券> &7- &f上架物品到拍卖行'
-  lines-per-page: 27
+  - ' &6&e/ah sell 起拍价 一口价 <1=金币, 2=点券> &7- &f拍卖'
+  - ' &6&eShift + 右键玩家 = 玩家交易'
+  - ' &6&eShift + 右键动物 = 举起动物'
+  - ' &6&eShift + 右键村民 = 捕捉村民'
+  - ' &6&e宝箱位置记不住？试试/envoy drop吧!'
+  - ' &6&e想要一键出售物品?试试/sellgui吧!'
+  - ' &6&e熔炉[装备 + 强化碳] = 强化装备'
+  - ' &6&e想要暴富?可以试试菜单的彩票功能!'
+  - ' &6&e钓鱼进度条出现后别着急点，达到绿色就可以点了!'
+  - ' &6&e不会点歌?那就试试/zm help music!'
+  - ' &6&eShift + 右键墓碑 = 快速取走'
+  lines-per-page: 45
+#每页最多显示多少
 
 # 命令禁用设置
 commandblock:
@@ -66,6 +85,19 @@ commandblock:
     - "ban"
     - "unban"
     - "plugins"
+    - "help"
     - "version"
-    - "pl"
-  block-message: "&c你没有权限使用此命令！"
+    - "//calc"
+    - "//calculate"
+    - "//eval"
+    - "//evaluate"
+    - "//solve"
+    - "//asc"
+    - "//ascend"
+    - "//desc"
+    - "//descend"
+    - "/mv ^"
+    - "/mv help <"
+    - "/mvhelp <"
+    - "/$"
+  block-message: "&7[&e&l!&7]&c&l小伙子你想看什么！"

@@ -66,9 +66,9 @@ public class RulesManager implements Listener, CommandExecutor, TabCompleter {
         
         ConfigurationSection config = plugin.getConfig().getConfigurationSection("rules");
         if (config != null) {
-            this.title = config.getString("title", "&6=== 服务器规则 ===");
+            this.title = config.getString("title", "&6=== 萌新指南 ===");
             this.content = config.getStringList("content");
-            this.linesPerPage = config.getInt("lines-per-page", 27);
+            this.linesPerPage = config.getInt("lines-per-page", 45);
         }
     }
 
