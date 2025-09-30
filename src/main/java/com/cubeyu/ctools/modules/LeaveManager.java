@@ -14,6 +14,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.util.UUID;
 
 public class LeaveManager implements Listener {
     private final CTools plugin;
@@ -72,19 +74,29 @@ public class LeaveManager implements Listener {
         // 取消原版的退出服务器提示消息
         event.setQuitMessage(null);
         
+        // 在玩家退出时立即处理所有消息和占位符
+        final List<Component> processedMessages = new ArrayList<>();
+        for (String message : messages) {
+            // 替换基础占位符
+            String processedMessage = message
+                .replace("%player_name%", player.getName())
+                .replace("%server%", plugin.getServer().getName());
+            
+            // 使用PlaceholderAPI解析更复杂的变量
+            // 玩家仍然在线时立即解析所有变量
+            processedMessage = PlaceholderUtils.parsePlaceholders(player, processedMessage);
+            
+            // 转换为彩色组件
+            processedMessages.add(ColorUtils.colorize(processedMessage));
+        }
+        
+        // 保存玩家UUID用于音效播放判断
+        final UUID playerUUID = player.getUniqueId();
+        
         // 延迟发送自定义退出消息
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
-            for (String message : messages) {
-                // 替换基础占位符
-                String processedMessage = message
-                    .replace("%player_name%", player.getName())
-                    .replace("%server%", plugin.getServer().getName());
-                
-                // 使用PlaceholderAPI解析更复杂的变量
-                processedMessage = PlaceholderUtils.parsePlaceholders(player, processedMessage);
-                
-                // 发送带颜色的消息给所有在线玩家
-                Component component = ColorUtils.colorize(processedMessage);
+            // 发送已处理好的消息给所有在线玩家
+            for (Component component : processedMessages) {
                 Bukkit.getServer().sendMessage(component);
             }
             
@@ -97,7 +109,7 @@ public class LeaveManager implements Listener {
                     
                     for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
                         // 跳过退出的玩家
-                        if (!onlinePlayer.getUniqueId().equals(player.getUniqueId())) {
+                        if (!onlinePlayer.getUniqueId().equals(playerUUID)) {
                             onlinePlayer.playSound(onlinePlayer.getLocation(), sound, volume, pitch);
                         }
                     }

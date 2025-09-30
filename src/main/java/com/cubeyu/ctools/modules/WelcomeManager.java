@@ -73,8 +73,6 @@ public class WelcomeManager implements Listener {
         // 首先取消原版的进入服务器提示消息（对所有玩家都有效，包括管理员）
         event.setJoinMessage(null);
         
-        // 注意：不再检查权限，所有玩家都将看到欢迎消息
-        // if (player.hasPermission("ctools.welcome.bypass")) return;
         
         // 延迟发送自定义欢迎消息
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
