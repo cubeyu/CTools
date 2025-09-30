@@ -95,7 +95,7 @@ public class CTools extends JavaPlugin implements CommandExecutor, TabCompleter 
         // 检查配置并初始化各个模块
         if (config.getBoolean("modules.welcome", true)) {
             welcomeManager = new WelcomeManager(this);
-            logger.info("欢迎模块已启用");
+            logger.info("进服提示模块已启用");
         }
 
         if (config.getBoolean("modules.leave", true)) {

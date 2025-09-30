@@ -6,10 +6,10 @@
 # 插件支持papi变量
 # 功能模块开关
 modules:
-  welcome: true          # 进服提示模块
-  leave: true            # 退服提示模块
-  rules: true            # 规则帮助模块
-  commandblock: true     # 命令禁用模块
+  welcome: true          # 进服提示模块[可热加载]
+  leave: true            # 退服提示模块[可热加载]
+  rules: true            # 规则帮助模块[不可热加载]
+  commandblock: true     # 命令禁用模块[不可热加载]
 
 # 进服提示设置
 welcome:
