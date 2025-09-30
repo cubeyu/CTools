@@ -15,6 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -48,6 +49,7 @@ public class RulesManager implements Listener, CommandExecutor, TabCompleter {
         // 卸载事件监听器
         if (enabled) {
             InventoryClickEvent.getHandlerList().unregister(this);
+            PlayerQuitEvent.getHandlerList().unregister(this);
         }
         
         // 重新加载配置
@@ -110,6 +112,12 @@ public class RulesManager implements Listener, CommandExecutor, TabCompleter {
             int currentPage = playerPages.getOrDefault(player, 0);
             showRules(player, currentPage - 1);
         }
+    }
+    
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        Player player = event.getPlayer();
+        playerPages.remove(player); // 清理玩家引用，防止内存泄露
     }
 
     private void showRules(Player player, int page) {
