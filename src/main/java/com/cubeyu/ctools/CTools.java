@@ -10,6 +10,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -62,6 +66,28 @@ public class CTools extends JavaPlugin implements CommandExecutor, TabCompleter 
 
     @Override
     public void onDisable() {
+        // 注销所有事件监听器
+        if (welcomeManager != null) {
+            PlayerJoinEvent.getHandlerList().unregister(welcomeManager);
+        }
+        if (leaveManager != null) {
+            PlayerQuitEvent.getHandlerList().unregister(leaveManager);
+        }
+        if (rulesManager != null) {
+            InventoryClickEvent.getHandlerList().unregister(rulesManager);
+            PlayerQuitEvent.getHandlerList().unregister(rulesManager);
+        }
+        if (commandBlocker != null) {
+            PlayerCommandPreprocessEvent.getHandlerList().unregister(commandBlocker);
+        }
+        
+        // 清理模块引用
+        welcomeManager = null;
+        leaveManager = null;
+        rulesManager = null;
+        commandBlocker = null;
+        config = null;
+        
         logger.info("CTools 插件已禁用！作者QQ：3144855127");
     }
 
